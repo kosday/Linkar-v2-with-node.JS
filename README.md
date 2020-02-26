@@ -48,14 +48,14 @@ logger.info("--------")
 var crdOpt = linkar_client.LkCreateCredentialOptions(
 
          "linkarserver",                // Linkar Server IP or Hostname
+         
+         "EP_NAME",                        // EntryPoint Name
 
          11300,                                // Linkar Server EntryPoint port
 
          "admin",                        // Linkar Server Username
 
          "admin",                        // Linkar Server Username Password
-
-         "EP_NAME",                        // EntryPoint Name
 
          "",                                        // Language
 
