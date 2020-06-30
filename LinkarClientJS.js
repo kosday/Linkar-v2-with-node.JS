@@ -34,6 +34,17 @@ const IOFormatSch = {
   TABLE: 4
 }
 
+const IOFormatCru = {
+  MV: 1,
+  XML: 2,
+  JSON: 3,
+  TABLE: 4,
+  XML_DICT: 5,
+  XML_SCH: 6,
+  JSON_DICT: 7,
+  JSON_SCH: 8
+}
+
 const RowHeadersType = {
   MAINLABEL: 1,
   SHORTLABEL: 2,
@@ -50,21 +61,21 @@ class LinkarClient {
          // --------------------------
          // Helper functions for management complex "string object"
          // --------------------------
-         'LkCreateCredentialOptions': ['char*', ['string', 'int', 'string', 'string', 'string', 'string', 'string']],
+         'LkCreateCredentialOptions': ['char*', ['string', 'string', 'int', 'string', 'string', 'string', 'string']],
          'LkGetDataFromCredentialOptions': ['char*', ['string', 'int']],
          'LkGetDataFromConnectionInfo': ['char*', ['string', 'int']],
-         'LkCreateReadOptions': ['char*', ['bool', 'bool', 'bool', 'bool', 'bool']],
-         'LkCreateUpdateOptions': ['char*', ['bool', 'bool', 'bool', 'bool', 'bool', 'bool', 'bool']],
+         'LkCreateReadOptions': ['char*', ['bool', 'bool', 'bool', 'bool']],
+         'LkCreateUpdateOptions': ['char*', ['bool', 'bool', 'bool', 'bool', 'bool', 'bool']],
          'LkCreateNewRecordIdTypeNone': ['char*', []],
          'LkCreateNewRecordIdTypeLinkar': ['char*', ['string', 'string', 'string']],
          'LkCreateNewRecordIdTypeCustom': ['char*', []],
          'LkCreateNewRecordIdTypeRandom': ['char*', ['bool', 'long']],
-         'LkCreateNewOptions': ['char*', ['char*', 'bool', 'bool', 'bool', 'bool', 'bool', 'bool']],
+         'LkCreateNewOptions': ['char*', ['char*', 'bool', 'bool', 'bool', 'bool', 'bool']],
          'LkCreateRecoverRecordIdTypeNone': ['char*', []],
          'LkCreateRecoverRecordIdTypeLinkar': ['char*', ['string', 'string']],
          'LkCreateRecoverRecordIdTypeCustom': ['char*', []],
          'LkCreateDeleteOptions': ['char*', ['bool', 'string']],
-         'LkCreateSelectOptions': ['char*', ['bool', 'bool', 'long', 'long', 'bool', 'bool', 'bool', 'bool', 'bool']],	 
+         'LkCreateSelectOptions': ['char*', ['bool', 'bool', 'long', 'long', 'bool', 'bool', 'bool', 'bool']],	 
 		 'LkAddArgumentSubroutine': ['char*', ['string', 'string']],
 
          'LkCreateSchOptionsTypeLKSCHEMAS': ['char*', ['int', 'bool', 'bool', 'bool', 'long', 'long']],	 		 
@@ -192,8 +203,7 @@ class LinkarClient {
    // --------------------------
 
    LkCreateCredentialOptions(host, entrypoint, port, username, password, language, freetext){
-      var ret_cxx_value = this.lib_linkar.LkCreateCredentialOptions(host, entrypoint, port, username, password,
-                                                                          language, freetext)
+      var ret_cxx_value = this.lib_linkar.LkCreateCredentialOptions(host, entrypoint, port, username, password, language, freetext)
       return this.LkCloneAndFree(ret_cxx_value)
    }
 
@@ -207,16 +217,16 @@ class LinkarClient {
      return this.LkCloneAndFree(ret_cxx_value)
    }
 
-   LkCreateReadOptions(calculated, conversion, formatSpec, originalRecords, dictionaries){
+   LkCreateReadOptions(calculated, conversion, formatSpec, originalRecords){
       var ret_cxx_value = this.lib_linkar.LkCreateReadOptions(calculated, conversion, formatSpec,
-                                                        originalRecords, dictionaries)
+                                                        originalRecords)
       return this.LkCloneAndFree(ret_cxx_value)
     }
 
    LkCreateUpdateOptions(optimisticLock, readAfter, calculated,
-                                   conversion, formatSpec, originalRecords, dictionaries){
+                                   conversion, formatSpec, originalRecords){
       var ret_cxx_value = this.lib_linkar.LkCreateUpdateOptions(optimisticLock, readAfter, calculated,
-                                                          conversion, formatSpec, originalRecords, dictionaries)
+                                                          conversion, formatSpec, originalRecords)
       return this.LkCloneAndFree(ret_cxx_value)
    }
 
@@ -241,9 +251,9 @@ class LinkarClient {
    }
 
    LkCreateNewOptions(newItemIdType, readAfter, calculated, conversion,
-                           formatSpec, originalRecords, dictionaries){
+                           formatSpec, originalRecords){
       var ret_cxx_value = this.lib_linkar.LkCreateNewOptions(newItemIdType, readAfter, calculated, conversion,
-                                                        formatSpec, originalRecords, dictionaries)
+                                                        formatSpec, originalRecords)
       return this.LkCloneAndFree(ret_cxx_value)
     }
 
@@ -273,18 +283,18 @@ class LinkarClient {
     }
 
     LkCreateSelectOptions(onlyRecordId, pagination, regPage, numPage,
-                                 calculated, conversion, formatSpec, originalRecords, dictionaries){
+                                 calculated, conversion, formatSpec, originalRecords){
       var ret_cxx_value = this.lib_linkar.LkCreateSelectOptions(onlyRecordId, pagination, regPage, numPage,
-                                                          calculated, conversion, formatSpec, originalRecords, dictionaries)
+                                                          calculated, conversion, formatSpec, originalRecords)
       return this.LkCloneAndFree(ret_cxx_value)
     }
 
-    LkCreateSelectOptions(onlyRecordId, pagination, regPage, numPage,
-                                calculated, conversion, formatSpec, originalRecords, dictionaries){
-      var ret_cxx_value = this.lib_linkar.LkCreateSelectOptions(onlyRecordId, pagination, regPage, numPage,
-                                  calculated, conversion, formatSpec, originalRecords, dictionaries)
-      return this.LkCloneAndFree(ret_cxx_value)
-    }
+    //LkCreateSelectOptions(onlyRecordId, pagination, regPage, numPage,
+    //                            calculated, conversion, formatSpec, originalRecords){
+    //  var ret_cxx_value = this.lib_linkar.LkCreateSelectOptions(onlyRecordId, pagination, regPage, numPage,
+    //                              calculated, conversion, formatSpec, originalRecords)
+    //  return this.LkCloneAndFree(ret_cxx_value)
+    //}
 
 
     LkAddArgumentSubroutine( _arguments, newArgument) {

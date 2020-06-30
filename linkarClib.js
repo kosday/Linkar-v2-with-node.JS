@@ -46,7 +46,7 @@ var receiveTimeout = -1
 console.log("LkLogin")
 console.log("--------")
 var crdOpt = linkar_client.LkCreateCredentialOptions(
-		"1227.0.0.1",		// Linkar Server IP or Hostname
+		"127.0.0.1",		// Linkar Server IP or Hostname
 		"EP_NAME",			// EntryPoint Name
 		11300,				// Linkar Server EntryPoint port
 		"user",				// Linkar Server Username
@@ -84,11 +84,10 @@ var nop_calculated = false
 var nop_conversion = false
 var nop_formatSpec = false
 var nop_originalRecords = false
-var nop_dictionaries = false
 var newOptions = linkar_client.LkCreateNewOptions(nop_newItemIdTypeNone,
                                                         nop_readAfter, nop_calculated,
                                                         nop_conversion, nop_formatSpec,
-                                                        nop_originalRecords, nop_dictionaries)
+                                                        nop_originalRecords)
 var result = linkar_client.LkNew(connectionInfo, filename, strNewId, strNewRecord, newOptions,
                                     LinkarClient.IOFormat.MV, LinkarClient.IOFormat.MV,
                                     customVars, 600)
@@ -157,11 +156,10 @@ var uop_calculated = false
 var uop_conversion = false
 var uop_formatSpec = false
 var uop_originalRecords = false
-var uop_dictionaries = false
 var updateOptions = linkar_client.LkCreateUpdateOptions(uop_optimisticLock,
                                                     uop_readAfter, uop_calculated,
                                                     uop_conversion, uop_formatSpec,
-                                                    uop_originalRecords, uop_dictionaries)
+                                                    uop_originalRecords)
 var originalRecords = ''
 result = linkar_client.LkUpdate(connectionInfo, filename, strRecordId, strRecord,
                                     originalRecords, updateOptions,
@@ -187,10 +185,9 @@ var rop_calculated = true
 var rop_conversion = false
 var rop_formatSpec = false
 var rop_originalRecords = false
-var rop_dictionaries = false
 var readOptions = linkar_client.LkCreateReadOptions(rop_calculated,
                                                     rop_conversion, rop_formatSpec,
-                                                    rop_originalRecords, rop_dictionaries)
+                                                    rop_originalRecords)
 var dictionaries = "ADDR"
 var result = linkar_client.LkRead(connectionInfo, filename, strNewId, dictionaries, readOptions,
                                     LinkarClient.IOFormat.MV,
@@ -347,10 +344,9 @@ var sop_calculated = true
 var sop_conversion = false
 var sop_formatSpec = false
 var sop_originalRecords = false
-var sop_dictionaries = false
 var selectOptions = linkar_client.LkCreateSelectOptions(sop_onlyRecordId, sop_pagination, sop_regPage,
                                                       sop_numPage, sop_calculated, sop_conversion,
-                                                      sop_formatSpec, sop_originalRecords, sop_dictionaries)
+                                                      sop_formatSpec, sop_originalRecords)
 
 var selectClause = ""
 var sortClause = "BY CODE"
@@ -493,7 +489,8 @@ result = linkar_client.LkGetTable(connectionInfo, filename, selectClause, sortCl
       process.exit(0)
   }else{
 	  var outputStr = output.toString('utf-8')
-	  var rows = outputStr.split(DBMV_Mark_AM_utf8)
+	  //var rows = outputStr.split(DBMV_Mark_AM_utf8)
+	  var rows = outputStr.split("\v")
 	  for(i = 0; i < rows.length; i++)
 		  console.log(rows[i])
   }
