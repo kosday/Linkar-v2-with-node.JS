@@ -63,14 +63,14 @@ try {
   console.log("--------")
   
   // Create credentials
-  var crdOpt = new Linkar.CredentialOptions(
-    "127.0.0.1",				// Linkar Server IP or Hostname
-    "EP_NAME",			        // EntryPoint Name
-    11300,				        // Linkar Server EntryPoint port
-    "admin",				    // Linkar Server Username
-    "admin",			        // Linkar Server Username Password
-    "",					        // Language
-    "Test Node.js")		    	// Free text
+	var crdOpt = new Linkar.CredentialOptions(
+		"127.0.0.1",		// Linkar Server IP or Hostname
+		"EPNAME",			// EntryPoint Name
+		11300,				// Linkar Server EntryPoint port
+		"admin",				// Linkar Server Username
+		"admin",			// Linkar Server Username Password
+		"",					// Language
+		"Test Node.js");		// Free text
 
   console.log("PORT: " + crdOpt.Port)
   // Create Linkar Client

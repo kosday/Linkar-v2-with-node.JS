@@ -35,9 +35,9 @@ console.log("Demo start");
 try {
 	// Create credentials
 	var crdOpt = new Linkar.CredentialOptions(
-		"192.168.100.101",		// Linkar Server IP or Hostname
-		"QMEP1",			// EntryPoint Name
-		11301,				// Linkar Server EntryPoint port
+		"127.0.0.1",		// Linkar Server IP or Hostname
+		"EPNAME",			// EntryPoint Name
+		11300,				// Linkar Server EntryPoint port
 		"admin",				// Linkar Server Username
 		"admin",			// Linkar Server Username Password
 		"",					// Language
